@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QuickQuiz • Dynamic</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <!-- Landing -->
+    <section id="landing" class="card center">
+      <div class="brand">
+        <h1>QuickQuiz</h1>
+        <p class="muted">Choose category &amp; difficulty — test your skills</p>
+      </div>
+
+      <form id="setupForm" class="setup" autocomplete="off">
+        <div class="row">
+          <label for="category">Category</label>
+          <select id="category" required>
+            <option value="General">General</option>
+            <option value="Programming">Programming</option>
+            <option value="Science">Science</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label for="difficulty">Difficulty</label>
+          <select id="difficulty" required>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label for="qcount">Number of Questions</label>
+          <input id="qcount" type="number" min="1" max="10" value="3" />
+        </div>
+
+        <div class="actions">
+          <button id="startBtn" type="button" class="btn primary">Start Quiz</button>
+        </div>
+      </form>
+
+      <footer class="center muted small">Built with HTML • CSS • JavaScript</footer>
+    </section>
+
+    <!-- Quiz -->
+    <section id="quiz" class="card hidden" aria-live="polite">
+      <header class="quiz-header">
+        <div class="meta">
+          <div id="progress">Question 1 / 3</div>
+          <div id="timer" aria-label="Timer" role="timer"><span id="timeValue">30</span>s</div>
+        </div>
+        <div class="title" id="categoryTitle">Category</div>
+      </header>
+
+      <article class="question-block">
+        <h2 id="questionText" class="question-text">Question text</h2>
+        <form id="optionsForm" class="options" role="radiogroup" aria-labelledby="questionText"></form>
+      </article>
+
+      <nav class="controls">
+        <button id="prevBtn" class="btn ghost">Previous</button>
+        <div class="center small muted" id="note">Time resets each question</div>
+        <div class="right">
+          <button id="nextBtn" class="btn">Next</button>
+          <button id="submitBtn" class="btn success">Submit</button>
+        </div>
+      </nav>
+    </section>
+
+    <!-- Result -->
+    <section id="result" class="card hidden center">
+      <h2>Quiz Result</h2>
+      <div id="scoreSummary" class="score"></div>
+
+      <div class="result-grid">
+        <div class="result-card">
+          <h3 id="correctCount">0</h3>
+          <p>Correct</p>
+        </div>
+        <div class="result-card">
+          <h3 id="incorrectCount">0</h3>
+          <p>Incorrect</p>
+        </div>
+        <div class="result-card">
+          <h3 id="avgTime">0s</h3>
+          <p>Avg time / question</p>
+        </div>
+      </div>
+
+      <canvas id="timeChart" style="max-width:640px;width:100%;margin-top:18px"></canvas>
+
+      <div class="actions" style="margin-top:18px">
+        <button id="retryBtn" class="btn">Retry</button>
+        <button id="homeBtn" class="btn ghost">Back to Home</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
